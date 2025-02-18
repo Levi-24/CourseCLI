@@ -2,7 +2,8 @@
 {
     internal class Course
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string FamilyName { get; set; }
         public bool Gender { get; set; }
         public int Money { get; set; }
         public int[] Results { get; set; }
@@ -10,7 +11,8 @@
         public Course(string dataRow)
         {
             var pieces = dataRow.Split(';');
-            Name = pieces[0];
+            FirstName = pieces[0].Split(' ')[0];
+            FamilyName = pieces[0].Split(' ')[1];
             Gender = pieces[1] == "m" ? true : false;
             Money = int.Parse(pieces[2]);
             Results = new int[4];
@@ -22,7 +24,7 @@
 
         public override string ToString()
         {
-            return $"Name: {Name}, Gender: {Gender}, Money: {Money}, Results: {Results};";
+            return $"Name: {FirstName + ' ' + FamilyName}, Gender: {Gender}, Money: {Money}, Results: {Results};";
         }
     }
 }
